@@ -5,7 +5,8 @@ let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem
 
 localStorage.setItem('items',JSON.stringify(itemsArray))
 const data = JSON.parse(localStorage.getItem('items'))
-
+//I tried incorporating a solution I found on another source, mainly: https://www.taniarascia.com/how-to-use-local-storage-with-javascript/ to store it in the local storage, (lines 4-8)
+//however it doesn't work, what do you think is the problem?
 
 
 todoList.addEventListener('click',function(e){
@@ -31,7 +32,7 @@ form.addEventListener('submit',function(e){
 
 })
 
-let items = []
+
 
 
 
