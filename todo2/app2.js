@@ -1,36 +1,44 @@
-const form = document.querySelector('#add-todo')
-const input = document.querySelector('#todoName')
-const todoList = document.querySelector('#todo-list')
-let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
+document.addEventListener("DOMContentLoaded",function(){
+let form = document.querySelector('#add-todo')
+let input = document.querySelector('#todoName')
+let todoList = document.querySelector('#todo-list')
 
-localStorage.setItem('items',JSON.stringify(itemsArray))
-const data = JSON.parse(localStorage.getItem('items'))
+// localStorage.setItem('items',JSON.stringify(todoList))
+// let itemsArray = localStorage.getItem('items') ? JSON.parse(localStorage.getItem('items')) : []
+
+// const data = JSON.parse(localStorage.getItem('items'))
 //I tried incorporating a solution I found on another source, mainly: https://www.taniarascia.com/how-to-use-local-storage-with-javascript/ to store it in the local storage, (lines 4-8)
 //however it doesn't work, what do you think is the problem?
+form.addEventListener('submit',function(e){
+    e.preventDefault();
+    let remove = document.createElement('button');
+    remove.innerText = 'remove';
 
+    let newTodo = document.createElement('li');
+   
+    newTodo.innerText = input.value;
+    todoList.appendChild(newTodo);
+    newTodo.appendChild(remove);
+    
+    form.reset();
+
+    })
 
 todoList.addEventListener('click',function(e){
-    if (e.target.tagName === 'BUTTON'){
+    if (e.target.tagName === 'LI'){
         console.log(e)
-         e.target.parentElement.classList.add('completed');
+         e.target.classList.add('completed');
        
+    }else if (e.target.tagName === "BUTTON"){
+        e.target.parentNode.remove();
     }
 
    
-})
+    })
 
-form.addEventListener('submit',function(e){
-    e.preventDefault();
-    const newTodo = document.createElement('li');
-    const completed = document.createElement('button');
-    completed.innerText = 'completed';
-    newTodo.innerText = input.value;
-    itemsArray
-    newTodo.appendChild(completed);
-    todoList.appendChild(newTodo);
-    input.value = '';
 
 })
+
 
 
 
